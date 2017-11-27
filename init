@@ -1,0 +1,6 @@
+#!/bin/bash
+
+read -p "Stat project name (e.g. distilled.getstat.com): " PROJECT
+read -p "API secret: " SECRET
+
+echo $PROJECT $SECRET > credentials

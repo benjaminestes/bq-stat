@@ -1,0 +1,11 @@
+[MASTER]
+
+additional-builtins=FileNotFoundError
+
+[MESSAGES CONTROL]
+
+disable=superfluous-parens,no-name-in-module,import-error
+
+[REPORTS]
+
+output-format=colorized

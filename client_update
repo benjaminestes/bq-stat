@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+  echo "😰  Expected client and site number!"
+  exit 1
+fi
+
+if ! [ -e credentials ]; then
+  echo "😰  Run init to set up credential file!"
+  exit 1
+fi
+
+CREDENTIALS=($( < credentials.txt ))
+
+PROJECT=${CREDENTIALS[0]}
+KEY=${CREDENTIALS[1]}
+SITE_ID=$2
+DATASET=$1
+
+curl -s \
+  https://$PROJECT/api/v2/$KEY/keywords/list?results=5000\&format=json\&site_id=$SITE_ID |
+  ./nld_from_json.py |
+  ./nld_insert $DATASET

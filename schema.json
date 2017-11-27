@@ -1,0 +1,67 @@
+[
+  {
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP"
+  },
+  {
+    "mode": "REQUIRED",
+    "name": "keyword",
+    "type": "STRING"
+  },
+  {
+    "mode": "REQUIRED",
+    "name": "market",
+    "type": "STRING"
+  },
+  {
+    "mode": "REQUIRED",
+    "name": "location",
+    "type": "STRING"
+  },
+  {
+    "mode": "REQUIRED",
+    "name": "device",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "rank",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "base_rank",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "url",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "advertiser_competition",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "gms",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "rms",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "cpc",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tags",
+    "type": "STRING"
+  }
+]

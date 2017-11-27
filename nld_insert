@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+  echo "😰  Expected client name!"
+  exit 1
+fi
+
+DATASET=$1
+TABLE=stat
+
+bq insert $DATASET.$TABLE

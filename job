@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xargs -n 2 ./client_update < clients.txt

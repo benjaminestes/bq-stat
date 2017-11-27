@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "😰  Expected client name!"
+    exit 1
+fi
+
+DATASET=$1
+TABLE=stat
+REPLACER=s/%CLIENT%/$DATASET/g
+VIEW_SQL=$( sed $REPLACER < clustered_legacy.sql)
+
+bq mk $DATASET
+bq mk --schema schema.json -t $DATASET.$TABLE
+bq mk --view="$VIEW_SQL" $DATASET.stat_clustered_legacy
