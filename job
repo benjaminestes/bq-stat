@@ -1,3 +1,5 @@
 #!/bin/bash
+#
+# When run as a cron job, this updates all clients.
 
 xargs -n 2 ./client_update < clients.txt

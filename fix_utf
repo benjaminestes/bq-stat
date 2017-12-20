@@ -1,3 +1,5 @@
 #!/bin/bash
+#
+# Stat CSV exports are UTF-16... this makes them UTF-8.
 
 iconv -f utf-16 -t utf-8

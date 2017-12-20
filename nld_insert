@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Inserts new client data into BQ, given newline delimited JSON.
 
 if [ $# -ne 1 ]; then
   echo "😰  Expected client name!"

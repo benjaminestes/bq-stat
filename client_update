@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Amend client data in BQ table with new rankings from Stat.
 
 if [ $# -ne 2 ]; then
   echo "😰  Expected client and site number!"
