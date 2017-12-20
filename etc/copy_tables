@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for dataset in `bq ls | tail -n +3 | awk '{ print $1 }'`
+do
+  bq extract --destination_format="NEWLINE_DELIMITED_JSON" \
+     $dataset.stat \
+     gs://stat-transfer/$dataset.json
+done

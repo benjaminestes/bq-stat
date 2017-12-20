@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for client in `awk '{print $1}' clients.txt`
+do
+  bq load --source_format="NEWLINE_DELIMITED_JSON" \
+    $client.stat \
+    gs://stat-transfer/$client.json
+done

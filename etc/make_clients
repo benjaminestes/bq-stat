@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for client in `awk '{print $1}' clients.txt`
+do
+  ./client_init $client
+done
