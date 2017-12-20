@@ -57,7 +57,7 @@ FROM (
     ctrs.calculated AS ctr
   FROM
     %CLIENT%.stat AS stat
-  JOIN
+  LEFT JOIN
     stat_config.ctrs AS ctrs
   ON
     stat.rank = ctrs.rank)
