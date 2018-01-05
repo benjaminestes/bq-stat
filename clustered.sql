@@ -1,5 +1,5 @@
 SELECT
-  (SUBSTR(CAST (timestamp AS STRING),0,4) + SUBSTR(CAST (timestamp AS STRING),6,2) + SUBSTR(CAST (timestamp AS STRING),9,2)) AS date,
+  CONCAT(SUBSTR(CAST (timestamp AS STRING),0,4), SUBSTR(CAST (timestamp AS STRING),6,2), SUBSTR(CAST (timestamp AS STRING),9,2)) AS date,
   keyword,
   market,
   location,
@@ -35,10 +35,10 @@ SELECT
     ELSE "NR"
   END AS serp_page,
   ctr,
-  INTEGER(ctr * gms) AS estimated_global_sessions,
-  INTEGER(ctr * rms) AS estimated_regional_sessions,
-  INTEGER(0.3 * gms) AS maximum_global_sessions,
-  INTEGER(0.3 * rms) AS maximum_regional_sessions
+  CAST(ctr * gms AS INT64) AS estimated_global_sessions,
+  CAST(ctr * rms AS INT64) AS estimated_regional_sessions,
+  CAST(0.3 * gms AS INT64) AS maximum_global_sessions,
+  CAST(0.3 * rms AS INT64) AS maximum_regional_sessions
 FROM (
   SELECT
     stat.timestamp AS timestamp,
@@ -56,8 +56,8 @@ FROM (
     stat.tags AS tags,
     ctrs.calculated AS ctr
   FROM
-    %CLIENT%.stat AS stat
+    `bq-stat.%CLIENT%.stat` AS stat
   LEFT JOIN
-    stat_config.ctrs AS ctrs
+    `bq-stat.stat_config.ctrs` AS ctrs
   ON
     stat.rank = ctrs.rank)

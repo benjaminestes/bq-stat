@@ -10,8 +10,8 @@ fi
 DATASET=$1
 TABLE=stat
 REPLACER=s/%CLIENT%/$DATASET/g
-VIEW_SQL=$( sed $REPLACER < clustered_legacy.sql)
+VIEW_SQL=$( sed $REPLACER < clustered.sql)
 
 bq mk $DATASET
 bq mk --schema schema.json -t $DATASET.$TABLE
-bq mk --view="$VIEW_SQL" $DATASET.stat_clustered_legacy
+bq mk --nouse_legacy_sql --view="$VIEW_SQL" $DATASET.stat_clustered

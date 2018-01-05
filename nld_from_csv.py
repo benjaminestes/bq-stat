@@ -57,8 +57,36 @@ def csv_reader():
 def main():
     """Creat an object corresponding to Stat's CSV export,
     and write a JSON object for each observation in Stat's response."""
+
+    # Stat's API outputs a single row for each instance of a keyword,
+    # in the sense you'd take it looking at their GUI. That means only
+    # a single ranking page is included.
+    #
+    # However, this script is for importing historical data which we
+    # get from a ranking export. The ranking export is a CSV which
+    # includes a row for each ranking page.  It will also include an
+    # empty row for an observation of no ranking page. We want to make
+    # sure at most a single observation is included to match what we
+    # get from the API.
+    #
+    # This emits a line for the first instance of a "key". By default
+    # this will be the best-ranking page. However, Stat could change
+    # this in the future.
+    
+    seen = set()
+    
     for row in csv_reader():
-        print(json.dumps(map_row_to_schema(row)))
+        r = map_row_to_schema(row)
+        
+        key = (r["timestamp"],
+               r["keyword"],
+               r["market"],
+               r["location"],
+               r["device"])
+
+        if key not in seen:
+            seen.add(key)
+            print(json.dumps(r))
 
 
 if __name__ == "__main__":
